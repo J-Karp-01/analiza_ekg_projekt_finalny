@@ -24,6 +24,7 @@ import neurokit2 as nk
 import emd
 from scipy import signal
 from utils.loaders import load_my_data
+from analysis.ecg_analysis import filter_ecg,detect_r_peaks,calculate_hrv
 
 
 #%%--------------------------------Ustawienia wstępne--------------------------
@@ -249,8 +250,7 @@ with col1:
     
 df['ecg'].astype(float)
 surowy_wektor = df['ecg'].values
-df['ecg_filtrowany'] = savgol_filter(surowy_wektor, window_length, polyorder)
-
+df['ecg_filtrowany'] = filter_ecg(surowy_wektor)
 
 with col2:
     # 1. Tworzymy pustą figurę

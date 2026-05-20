@@ -25,5 +25,6 @@ def load_my_data(path):
     df = df.replace(',', '.', regex=True)
     df = df.astype(float)
     df = df.dropna()
+    df = df.rename(columns={"ecg1": "ecg"})
 
     return df
