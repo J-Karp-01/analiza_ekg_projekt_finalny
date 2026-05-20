@@ -23,6 +23,7 @@ from plotly.subplots import make_subplots
 import neurokit2 as nk
 import emd
 from scipy import signal
+from utils.loaders import load_my_data
 
 
 #%%--------------------------------Ustawienia wstępne--------------------------
@@ -79,73 +80,13 @@ st.markdown(f"""
 # --- wybór EKG
 wybor_ekg = st.selectbox(
     "Wybierz rodzaj EKG",
-    ["EKG wysiłkowe", "EKG spoczynkowe"]
-)
-
-
-# --- funkcja: EKG wysiłkowe
-@st.cache_data
-def load_my_data():
-    path = "C:/Users/bekis/Downloads/ekg/ekg_wysilkowe_AlisaSel.txt"
-
-    with open(path, 'r') as f:
-        lines = f.readlines()
-
-    data_start = next(i for i, line in enumerate(lines) if line.strip().startswith("0,"))
-
-    df = pd.read_csv(
-        path,
-        skiprows=data_start,
-        sep=r"\s+",
-        header=None,
-        names=["czas", "ecg1", "ecg2"],
-        engine="python"
-    )
-
-    df = df.replace(',', '.', regex=True)
-    df = df.astype(float)
-    df = df.dropna()
-
-    df = df.rename(columns={"ecg1": "ecg"})
-    df = df[["czas", "ecg"]]
-
-    return df
-
-
-# --- funkcja: EKG spoczynkowe
-@st.cache_data
-def load_rest_data():
-    path = "C:/Users/bekis/Downloads/ekg/ekg_spoczynkowe_Alisa.txt"  
-
-    with open(path, 'r') as f:
-        lines = f.readlines()
-
-    data_start = next(i for i, line in enumerate(lines) if line.strip().startswith("0,"))
-
-    df = pd.read_csv(
-        path,
-        skiprows=data_start,
-        sep=r"\s+",
-        header=None,
-        names=["czas", "ecg1", "ecg2"],
-        engine="python"
-    )
-
-    df = df.replace(',', '.', regex=True)
-    df = df.astype(float)
-    df = df.dropna()
-
-    df = df.rename(columns={"ecg1": "ecg"})
-    df = df[["czas", "ecg"]]
-
-    return df
-
+    ["EKG wysiłkowe", "EKG spoczynkowe"])
 
 # --- wybór danych
 if wybor_ekg == "EKG wysiłkowe":
-    df = load_my_data()
+    df = load_my_data("data/ekg/ekg_wysilkowe_AlisaSel.txt")
 else:
-    df = load_rest_data()
+    df = load_my_data("data/ekg/ekg_spoczynkowe_Alisa.txt")
 
 
 # --- info (opcjonalne)
