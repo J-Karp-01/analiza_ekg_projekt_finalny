@@ -1,5 +1,3 @@
-from turtle import width
-
 import streamlit as st
 
 
@@ -7,7 +5,7 @@ def render_header(
     bialy,
     lekki_szary,
     lekki_czerwony,
-    mocny_szary,
+    mocny_szary
 ):
 
     st.markdown(f"""
@@ -45,7 +43,7 @@ def render_header(
         [data-testid="stMetricLabel"] p {{
             color: {mocny_szary} !important;
         }}
-        
+
         </style>
     """, unsafe_allow_html=True)
 
