@@ -5,7 +5,9 @@ def render_header(
     bialy,
     lekki_szary,
     lekki_czerwony,
-    mocny_szary
+    mocny_szary,
+    width,
+    overflow
 ):
 
     st.markdown(f"""
@@ -43,6 +45,16 @@ def render_header(
         [data-testid="stMetricLabel"] p {{
             color: {mocny_szary} !important;
         }}
+
+        section[data-testid="stFileUploader"] button {
+        width: auto !important;
+        min-width: 120px !important;
+        padding: 0.5rem 1rem !important;
+    }
+
+        section[data-testid="stFileUploader"] {
+            overflow: hidden;
+        }
 
         </style>
     """, unsafe_allow_html=True)
