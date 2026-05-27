@@ -14,13 +14,6 @@ from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.lib import colors
 
 
-pdfmetrics.registerFont(
-    TTFont(
-        'Arial',
-        r'C:\Windows\Fonts\arial.ttf'
-    )
-)
-
 def generate_pdf_report(
     output_path,
     aktualny_sygnal,
@@ -43,9 +36,9 @@ def generate_pdf_report(
     )
 
     styles = getSampleStyleSheet()
-    styles['Title'].fontName = 'Arial'
-    styles['Normal'].fontName = 'Arial'
-    styles['Heading2'].fontName = 'Arial'
+    styles['Title'].fontName = 'Helvetica'
+    styles['Normal'].fontName = 'Helvetica'
+    styles['Heading2'].fontName = 'Helvetica'
 
 
     styles['Title'].fontSize = 18
@@ -159,7 +152,7 @@ def generate_pdf_report(
 
         ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
 
-        ('FONTNAME', (0, 0), (-1, -1), 'Arial'),
+        ('FONTNAME', (0, 0), (-1, -1), 'Helvetica'),
 
         ('FONTSIZE', (0, 0), (-1, -1), 12),
 
