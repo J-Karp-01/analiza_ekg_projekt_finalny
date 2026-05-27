@@ -46,6 +46,8 @@ def load_exercise_data():
     return df
 
 
+
+
 @st.cache_data
 def load_rest_data():
 
@@ -84,6 +86,71 @@ def load_rest_data():
         pd.to_numeric,
         errors='coerce'
     )
+
+    df = df.dropna()
+
+    return df
+
+
+@st.cache_data
+def load_resp_normal():
+
+    path = "data/multimodal/oddech_norm.txt"
+
+    with open(path, 'r') as f:
+
+        lines = f.readlines()
+
+    data_start = next(
+        i for i, line in enumerate(lines)
+        if line.strip().startswith("0,")
+    )
+
+    df = pd.read_csv(
+        path,
+        skiprows=data_start,
+        sep=r"\s+",
+        header=None,
+        names=["czas", "resp", "ecg"],
+        engine="python"
+    )
+
+    df = df.replace(',', '.', regex=True)
+
+    df = df.astype(float)
+
+    df = df.dropna()
+
+    return df
+
+
+
+@st.cache_data
+def load_resp_control():
+
+    path = "data/multimodal/oddech_kontr.txt"
+
+    with open(path, 'r') as f:
+
+        lines = f.readlines()
+
+    data_start = next(
+        i for i, line in enumerate(lines)
+        if line.strip().startswith("0,")
+    )
+
+    df = pd.read_csv(
+        path,
+        skiprows=data_start,
+        sep=r"\s+",
+        header=None,
+        names=["czas", "resp", "ecg"],
+        engine="python"
+    )
+
+    df = df.replace(',', '.', regex=True)
+
+    df = df.astype(float)
 
     df = df.dropna()
 

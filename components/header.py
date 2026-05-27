@@ -1,3 +1,4 @@
+from tkinter import font
 import streamlit as st
 
 
@@ -10,12 +11,23 @@ def render_header(
 
     st.markdown(f"""
         <style>
+                
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
+            html, body, [class*="css"], [class*="st-"] {{
+                font-family: 'Poppins', sans-serif !important;
+            }}
+
+            h1, h2, h3, h4, h5, h6 {{
+                font-family: 'Poppins', sans-serif !important;
+            }}
+
+                
         .stApp {{
             color: {bialy};
         }}
 
-        h1, h2, h3, [data-testid="stHeader"] {{
+        h2, h3, [data-testid="stHeader"] {{
             color: {bialy} !important;
         }}
 
@@ -33,32 +45,58 @@ def render_header(
             color: {mocny_szary} !important;
         }}
 
-        .moja-ramka {{
-
-            border-radius: 10px;
-            padding: 20px;
-            background-color: {lekki_szary};
-            text-align: center;
-            height: 120px;
-        }}
-
-        .moja-ramka h4 {{
-            color: {lekki_czerwony};
-            margin: 0;
-        }}
-
         </style>
     """, unsafe_allow_html=True)
 
-    st.markdown(f"""
-        <div class="moja-ramka">
-            <h4>Analiza HRV sygnału EKG</h4>
-            <p style="color: {bialy};">
-                Zaawansowane laboratorium fizyki medycznej
-            </p>
-        </div>
+    st.markdown("""
+    <style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
+
+    </style>
     """, unsafe_allow_html=True)
 
+    st.markdown(f"""
+    <div style="
+        background: linear-gradient(135deg, #161b22, #1e293b);
+        border-radius: 18px;
+        padding: 38px;
+        text-align: center;
+        border: 1px solid rgba(56,189,248,0.18);
+        box-shadow: 0 0 25px rgba(56,189,248,0.08);
+        margin-bottom: 18px;
+    ">
+
+    <h1 style="
+        color:#00e5ff;
+        margin:0;
+        font-size:38px;
+        font-weight:500;
+        letter-spacing:0.3px;
+    ">
+    Analiza HRV sygnału EKG oraz Synchronizacja sercowowo oddechowa
+    </h1>
+
+    <p style="
+        color:#00e5ff;
+        font-size:18px;
+        margin-top:14px;
+        margin-bottom:4px;
+    ">
+    Zaawansowane laboratorium Fizyki Medycznej
+    </p>
+
+    <p style="
+        color:#00e5ff;
+        font-size:14px;
+        margin:0;
+    ">
+    Jolanta Karp
+    </p>
+
+    </div>
+    """, unsafe_allow_html=True)
+        
     st.markdown(f"""
         <hr style="
             margin-top: 10px;

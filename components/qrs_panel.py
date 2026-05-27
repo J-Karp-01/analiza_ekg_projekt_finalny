@@ -93,6 +93,14 @@ def render_qrs_panel(
                 ),
             )
 
+            fig_seg.update_layout(
+                title_font=dict(
+                    color="#c8ff4a",
+                    size=18
+                ),
+                title_x=0.02
+            )
+
             st.plotly_chart(
                 fig_seg,
                 use_container_width=True
@@ -112,18 +120,29 @@ def render_qrs_panel(
             margines = (y_max_sredni - y_min_sredni) * 0.15
 
             fig_qrs = px.line(
-                df_qrs,
-                labels={
-                    'index': 'Próbki względem R',
-                    'value': 'Amplituda'
-                },
-                title="Nałożone segmenty QRS z uśrednionym profilem"
-            )
+            df_qrs,
+            labels={
+                'index': 'Próbki względem R',
+                'value': 'Amplituda'
+            },
 
+            title="Nałożone segmenty QRS z uśrednionym profilem",
+
+            template="plotly_dark"
+        )
+
+            fig_qrs.update_layout(
+                title_font=dict(
+                    color="#c8ff4a",
+                    size=18
+                ),
+                title_x=0.02
+            )
+            
             fig_qrs.update_traces(
                 line=dict(
                     width=1,
-                    color='rgba(150, 150, 150, 0.3)'
+                    color="#c8ff4a"
                 ),
                 opacity=0.4
             )
@@ -179,7 +198,14 @@ def render_qrs_panel(
             ))
 
             fig_single.update_layout(
-                title=f"Analiza morfologii: {wybrana_kolumna}",
+                title=dict(
+                    text=f"Analiza morfologii: {wybrana_kolumna}",
+                    font=dict(
+                        color="#c8ff4a",
+                        size=18
+                    ),
+                    x=0.02
+                ),
                 xaxis_title="Próbki względem załamka R [n]",
                 yaxis_title="Amplituda [mV]",
                 template="plotly_dark",
@@ -194,7 +220,7 @@ def render_qrs_panel(
                     x0=x_values.min(),
                     x1=x_values.max(),
                     line=dict(
-                        color="white",
+                        color="#00ff88",
                         width=1,
                         dash="dot"
                     )
@@ -223,8 +249,24 @@ def render_qrs_panel(
         opacity=0.9
     )])
 
+    st.markdown("""
+        <hr style="
+            margin-top: 30px;
+            height:5px;
+            border:none;
+            background-color:#444444;
+        " />
+    """, unsafe_allow_html=True)
+
     fig_3d.update_layout(
-        title='Trójwymiarowa segmentacja zespołów QRS',
+        title=dict(
+            text='Trójwymiarowa segmentacja zespołów QRS',
+            font=dict(
+                color="#c8ff4a",
+                size=18
+            ),
+            x=0.02
+        ),
         scene=dict(
             xaxis_title='Czas wewnątrz QRS [n]',
             yaxis_title='Numer uderzenia',

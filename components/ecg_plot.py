@@ -3,7 +3,7 @@ import plotly.graph_objects as go
 
 
 def render_ecg_plot(
-    df,
+    df_view,
     col2,
     lekki_czerwony
 ):
@@ -13,8 +13,8 @@ def render_ecg_plot(
         fig = go.Figure()
 
         fig.add_trace(go.Scatter(
-            x=df['czas'],
-            y=df['ecg'],
+            x=df_view['czas'],
+            y=df_view['ecg'],
             mode='lines',
             name='Surowy',
             line=dict(
@@ -24,8 +24,8 @@ def render_ecg_plot(
         ))
 
         fig.add_trace(go.Scatter(
-            x=df['czas'],
-            y=df['ecg_filtrowany'],
+            x=df_view['czas'],
+            y=df_view['ecg_filtrowany'],
             mode='lines',
             name='Savgol Filter',
             line=dict(
@@ -44,6 +44,15 @@ def render_ecg_plot(
             ),
             paper_bgcolor='rgba(0,0,0,0)',
             plot_bgcolor='rgba(0,0,0,0)',
+            xaxis=dict(
+                range=[
+                    df_view['czas'].min(),
+                    df_view['czas'].max()
+                ]
+            ),
+
+            uirevision=False,
+
             legend=dict(
                 orientation="h",
                 yanchor="bottom",
@@ -55,7 +64,11 @@ def render_ecg_plot(
             yaxis_title="Amplituda [mV]"
         )
 
-        st.markdown("###### Filtracja sygnału")
+        st.markdown(
+        '<h6 style="color:#ff4b4b;">Filtracja sygnału</h6>',
+        unsafe_allow_html=True
+)
+
 
         with st.container(border=True):
 

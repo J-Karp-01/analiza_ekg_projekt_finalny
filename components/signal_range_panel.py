@@ -8,6 +8,13 @@ def render_signal_range_panel(
     bialo_szary,
     lekki_czerwony
 ):
+    st.markdown(
+            f'<p style="margin-top: 0px; font-size: 18px; font-weight: bold; color:{lekki_czerwony};">Sygnał EKG</p>',
+            unsafe_allow_html=True)
+
+    st.markdown(f"""
+        <hr style="margin-top: 10px;height:5px; border:none; color:{lekki_czerwony}; background-color:{lekki_czerwony};" />
+    """, unsafe_allow_html=True)
 
     col1, col2, col3 = st.columns([2.0, 1.5, 5])
 
@@ -32,16 +39,14 @@ def render_signal_range_panel(
             step=0.1
         )
 
-        df_stary = df.copy()
-
-        df = df[
+        df_view = df[
             (df['czas'] >= zakres_czasu[0]) &
             (df['czas'] <= zakres_czasu[1])
         ].copy()
 
-        ile_zostalo = len(df)
+        ile_zostalo = len(df_view)
 
-        ile_wycieto = len(df_stary) - ile_zostalo
+        ile_wycieto = len(df) - ile_zostalo
 
         dane_pie = {
             "Status": [
@@ -62,7 +67,13 @@ def render_signal_range_panel(
             color_discrete_sequence=[
                 '#e74c3c',
                 '#7e7e7e'
-            ]
+            ],
+            category_orders={
+        "Status": [
+            "Fragment do analizy",
+            "Pozostała część"
+             ]
+            }
         )
 
         fig_pie.update_layout(
@@ -93,8 +104,8 @@ def render_signal_range_panel(
         fig = go.Figure()
 
         fig.add_trace(go.Scatter(
-            x=df_stary['czas'],
-            y=df_stary['ecg'],
+            x=df['czas'],
+            y=df['ecg'],
             mode='lines',
             name='Pozostała część',
             line=dict(
@@ -104,8 +115,8 @@ def render_signal_range_panel(
         ))
 
         fig.add_trace(go.Scatter(
-            x=df['czas'],
-            y=df['ecg'],
+            x=df_view['czas'],
+            y=df_view['ecg'],
             mode='lines',
             name='Fragment do analizy',
             line=dict(
@@ -146,4 +157,4 @@ def render_signal_range_panel(
         <hr style="margin-top: -10px;height:5px; border:none; color:#444444; background-color:#444444;" />
     """, unsafe_allow_html=True)
 
-    return df
+    return df_view, df

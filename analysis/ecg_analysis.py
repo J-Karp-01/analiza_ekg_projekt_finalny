@@ -14,3 +14,13 @@ def filter_ecg(
     )
 
     return ecg_filtrowany
+
+def compute_imf_energy(df_imfs):
+
+    energie = {}
+
+    for col in df_imfs.columns:
+
+        energie[col] = (df_imfs[col] ** 2).sum()
+
+    return energie

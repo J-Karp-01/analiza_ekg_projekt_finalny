@@ -2,17 +2,20 @@ import streamlit as st
 
 
 def render_filter_panel(
-    lekki_czerwony
+    lekki_szary 
 ):
 
     col1, col2 = st.columns([2, 7])
 
     with col1:
 
-        st.markdown("###### Filtrowanie")
+        st.markdown(
+        '<h6 style="color:#ff4b4b;">Filtrowanie</h6>',
+        unsafe_allow_html=True
+)
 
         st.markdown(f"""
-            <div style="background-color: {lekki_czerwony};
+            <div style="background-color: {lekki_szary};
                 border-radius: 10px;
                 padding: 40px;
                 margin-bottom: -420px;
