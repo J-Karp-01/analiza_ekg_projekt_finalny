@@ -6,8 +6,6 @@ def render_header(
     lekki_szary,
     lekki_czerwony,
     mocny_szary,
-    width,
-    overflow
 ):
 
     st.markdown(f"""
