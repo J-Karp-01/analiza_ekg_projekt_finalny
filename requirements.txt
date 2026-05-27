@@ -1,5 +1,5 @@
 pandas
-matplotlib.pyplot
+matplotlib
 numpy
 scipy 
 seaborn
@@ -7,4 +7,7 @@ streamlit
 neurokit2
 plotly
 EMD-signal 
+reportlab
+kaleido
+
 

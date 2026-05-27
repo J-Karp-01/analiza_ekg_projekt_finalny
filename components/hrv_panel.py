@@ -5,6 +5,9 @@ from analysis.hrv_analysis import (
     calculate_hrv_statistics
 )
 
+import plotly.graph_objects as go
+
+
 
 def render_hrv_panel(
     col2,
