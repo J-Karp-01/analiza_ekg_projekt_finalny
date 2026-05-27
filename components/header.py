@@ -1,3 +1,5 @@
+from turtle import width
+
 import streamlit as st
 
 
@@ -44,15 +46,11 @@ def render_header(
             color: {mocny_szary} !important;
         }}
 
-        section[data-testid="stFileUploader"] button {
+        section[data-testid="stFileUploader"] button {{
         width: auto !important;
         min-width: 120px !important;
-        padding: 0.5rem 1rem !important;
-    }
-
-        section[data-testid="stFileUploader"] {
-            overflow: hidden;
-        }
+        padding: 0.5rem 1rem !important;}}
+        section[data-testid="stFileUploader"] {{overflow: hidden;}}
 
         </style>
     """, unsafe_allow_html=True)
